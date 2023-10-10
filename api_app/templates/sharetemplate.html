@@ -1,0 +1,209 @@
+<html>
+  <head>
+    <title>{{subject}}</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <style>
+      @media only screen and (max-width: 600px) {
+        table {
+          width: 100% !important;
+          border-collapse: collapse;
+        }
+
+        table[width="480"] {
+          width: 100% !important;
+        }
+      }
+    </style>
+  </head>
+  <body style="background-color: #f4f4f4; margin-top: 50px">
+    <table
+      border="0"
+      cellpadding="0"
+      cellspacing="0"
+      style="max-width: 480px; width: 100%"
+      align="center"
+    >
+      <!-- HERO -->
+      <tr>
+        <td bgcolor="" align="center" style="padding: 0px 10px 0px 10px">
+          <table border="0" cellpadding="0" cellspacing="0" width="480">
+            <tr>
+              <td
+                bgcolor="#ffffff"
+                align="center"
+                valign="top"
+                style="
+                  padding: 40px 20px 20px 20px;
+                  border-radius: 4px 4px 0px 0px;
+                  color: #111111;
+                  font-family: 'Lato', Helvetica, Arial, sans-serif;
+                  font-size: 48px;
+                  font-weight: 400;
+                  letter-spacing: 4px;
+                  line-height: 48px;
+                "
+              >
+                <h3 style="font-size: 29px; font-weight: 400; margin: 0">
+                  Xendpal Reciepient
+                </h3>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+
+      <!-- OPEN MESSAGE BLOCK -->
+      <tr>
+        <td bgcolor="#f4f4f4" align="center" style="padding: 0px 10px 0px 10px">
+          <table border="0" cellpadding="0" cellspacing="0" width="480">
+            <!-- ACTUAL MESSAGE -->
+            <tr>
+              <td
+                bgcolor="#ffffff"
+                align="center"
+                style="
+                  padding: 20px 30px 40px 30px;
+                  color: #666666;
+                  font-family: 'Lato', Helvetica, Arial, sans-serif;
+                  font-size: 18px;
+                  font-weight: 400;
+                  line-height: 25px;
+                "
+              >
+                <h4>👋 Hello {{reciepient_email}},</h4>
+                <em>
+                  {{ user_email }} has just shared an item to you on Xendpal!
+                </em>
+
+                <p>
+                  Message from user :
+                  <em> <strong> "{{description}}" </strong></em>
+                </p>
+              </td>
+            </tr>
+
+            <!-- PIN BUTTON -->
+            <tr>
+              <td bgcolor="#ffffff" align="center">
+                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td bgcolor="#ffffff" align="center" style="padding: 20px">
+                      <table border="0" cellspacing="0" cellpadding="0">
+                        <tr>
+                          <td
+                            align="center"
+                            style="border-radius: 3px; background: #40a060"
+                          >
+                            <a
+                              href="{{ file_path }}"
+                              target="_blank"
+                              style="
+                                font-size: 10px;
+                                white-space: nowrap;
+                                overflow: hidden;
+                                text-overflow: ellipsis;
+                                font-family: Helvetica, Arial, sans-serif;
+                                text-decoration: none;
+                                color: #ffffff;
+                                text-decoration: none;
+                                padding: 15px 25px;
+                                border-radius: 2px;
+                                z-index: 3;
+                                display: inline-block;
+                              "
+                            >
+                              {{file_name}}
+                            </a>
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+
+      <!-- HELP CALLOUT -->
+      <tr>
+        <td
+          bgcolor="#f4f4f4"
+          align="center"
+          style="padding: 30px 10px 0px 10px"
+        >
+          <table border="0" cellpadding="0" cellspacing="0" width="480">
+            <!-- HEADLINE -->
+            <tr>
+              <td
+                bgcolor="#40a060"
+                align="center"
+                style="
+                  padding: 20px 30px 30px 30px;
+                  border-radius: 4px 4px 4px 4px;
+                  color: #666666;
+                  font-family: 'Lato', Helvetica, Arial, sans-serif;
+                  font-size: 18px;
+                  font-weight: 400;
+                  line-height: 25px;
+                "
+              >
+                <p
+                  style="
+                    font-size: 13px;
+                    font-weight: 400;
+                    color: #ffff;
+                    margin: 0;
+                  "
+                >
+                  You receiving this email because {{user_email}} sent you a
+                  file on Xendpal
+                </p>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+
+      <!-- FOOTER -->
+      <tr>
+        <td bgcolor="#f4f4f4" align="center" style="padding: 0px 10px 0px 10px">
+          <table border="0" cellpadding="0" cellspacing="0" width="480">
+            <!-- PERMISSION REMINDER -->
+            <tr>
+              <td
+                bgcolor="#f4f4f4"
+                align="center"
+                style="
+                  padding: 0px 30px 30px 30px;
+                  color: #666666;
+                  font-family: 'Lato', Helvetica, Arial, sans-serif;
+                  font-size: 14px;
+                  font-weight: 400;
+                  line-height: 18px;
+                "
+              >
+                <p style="margin-top: 10px">
+                  New to Xendpal? No worries, setting up is quick and easy. Just
+                  follow this link
+                  <a
+                    href="{{ frontend_url }}"
+                    target="_blank"
+                    style="color: green; font-weight: 900"
+                    >Xendpal</a
+                  >.
+                </p>
+                <small style="margin: 20px">
+                  Copyright {{current_year}} Xendpal .
+                </small>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>

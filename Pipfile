@@ -1,0 +1,24 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+werkzeug = "*"
+sqlalchemy = "*"
+alembic = "*"
+fastapi = {extras = ["all"], version = "*"}
+httpx = "*"
+fastapi-limiter = "*"
+redis = "*"
+psycopg2-binary = "*"
+python-jose = "*"
+premailer = "*"
+gunicorn = "*"
+black = "*"
+pylint = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.9"
