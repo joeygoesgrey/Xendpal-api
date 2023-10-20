@@ -11,7 +11,7 @@ from fastapi import (
     APIRouter,
 )
 import httpx
-from fastapi.responses import RedirectResponse
+from fastapi.responses import JSONResponse, RedirectResponse
 from fastapi.exceptions import HTTPException
 from datetime import datetime, timedelta
 from sqlalchemy import func, cast, Date
@@ -69,11 +69,11 @@ async def get_current_user(request: str):
 
             # Sending a GET request to fetch the user's information using the access token
             user_response = await client.get(
-                USER_INFO_URL, headers={"Authorization": f"Bearer {access_token}"}
+                USER_INFO_URL, headers={
+                    "Authorization": f"Bearer {access_token}"}
             )
             user_response.raise_for_status()  # Checking for HTTP errors
             user_info = user_response.json()  # Parsing the JSON response
-            print(user_info)
         return user_info  # Returning the user's information
 
     except httpx.HTTPError as http_err:
@@ -86,20 +86,31 @@ async def get_current_user(request: str):
 
 @router.post("/login/google")
 async def login_callback(
-    response: Response,
     request: schema.GoogleLoginRequest,  # Use the Pydantic model here
     db: Session = Depends(get_db),
 ):
-    # Here you can handle user login, such as creating a session or JWT
+    """
+    Handles the callback from Google OAuth2 login, and creates or retrieves the user's account in the database.
 
+    Parameters:
+    - request: a Pydantic model representing the incoming HTTP request google callback code returned from the frontend, containing the authorization code
+    - db: the database session dependency
+
+    Returns:
+    - A dictionary containing the access token and refresh token, if the user is successfully authenticated
+
+    Raises:
+    - HTTP 403 Forbidden if the user is not authorized to perform the requested action
+    """
+    # Here you can handle user login, such as creating a session or JWT
     current_user = await get_current_user(request.code)
-    if current_user.get("sub") is None:
+    if current_user.get("sub"):
         user = (
             db.query(models.User)
             .filter(models.User.sub == current_user.get("sub"))
             .first()
         )
-        if user is None:
+        if not user:
             new_user = models.User(
                 email=current_user.get("email"),
                 sub=current_user.get("sub"),
@@ -110,27 +121,35 @@ async def login_callback(
             db.commit()
             user = new_user  # Update the user variable to reference the new user
 
-            access_token, refresh_token = Oauth2.create_access_token(
-                data={"user_email": user.email}
-            )
+        access_token, refresh_token = Oauth2.create_access_token(
+            data={"user_email": user.email}
+        )
 
-            response = {
-                "access_token": access_token,
-                "refresh_token": refresh_token,
-            }
+        return {
+            "access_token": access_token,
+            "refresh_token": refresh_token,
+        }
     else:
-        response.status_code = (
-            status.HTTP_403_FORBIDDEN
-        )  # Set the status code to 403 here
-        response.content = {
-            "detail": "Not authorized to perform requested action"
-        }  # Set the content to a JSON object here
-
-    return response
+        return JSONResponse(
+            status_code=status.HTTP_403_FORBIDDEN,
+            content={"detail": "Not authorized to perform requested action"},
+        )
 
 
 @router.post("/refresh-token")
 async def refresh_token(refresh_token: schema.RefreshTokenSchema):
+    """
+    Refreshes an access token using a refresh token, and returns a new access token.
+
+    Parameters:
+    - refresh_token: a Pydantic model representing the refresh token
+
+    Returns:
+    - A dictionary containing the new access token
+
+    Raises:
+    - HTTP 401 Unauthorized if the refresh token is invalid or expired
+    """
     refresh_token = refresh_token.refresh_token
     credentials_exception = HTTPException(
         status_code=status.HTTP_401_UNAUTHORIZED,
@@ -138,7 +157,8 @@ async def refresh_token(refresh_token: schema.RefreshTokenSchema):
         headers={"WWW-Authenticate": "Bearer"},
     )
 
-    token_data = Oauth2.verify_access_token(refresh_token, credentials_exception)
+    token_data = Oauth2.verify_access_token(
+        refresh_token, credentials_exception)
 
     user_email = token_data.email
     new_access_token = Oauth2.create_access_token(
@@ -155,6 +175,19 @@ async def get_yearly_usage(
     current_user: models.User = Depends(Oauth2.get_current_user),
     db: Session = Depends(get_db),
 ):
+    """
+    Retrieves the total size of uploaded files for each month of the current year, for the authenticated user.
+
+    Parameters:
+    - current_user: the authenticated user, obtained from the access token
+    - db: the database session dependency
+
+    Returns:
+    - A dictionary containing two lists: the months (as strings) and the corresponding total usage (in bytes) for each month
+
+    Raises:
+    - None
+    """
     yearly_usage = (
         db.query(
             extract("month", models.Upload.created_at).label("month"),
@@ -180,9 +213,22 @@ async def get_user_information(
     current_user: models.User = Depends(Oauth2.get_current_user),
     db: Session = Depends(get_db),
 ):
-    # Query the user's files that are directly in the "Uploads/{user_email}" directory
+    """
+    Retrieves the user information for the authenticated user.
+
+    Parameters:
+    - current_user: the authenticated user, obtained from the access token
+    - db: the database session dependency
+
+    Returns:
+    - A Pydantic model representing the user information, including the email, name, and profile picture
+
+    Raises:
+    - None
+    """
     user_info = (
-        db.query(models.User).filter(models.User.email == current_user.email).first()
+        db.query(models.User).filter(
+            models.User.email == current_user.email).first()
     )
 
     return user_info
@@ -190,10 +236,11 @@ async def get_user_information(
 
 @router.get("/google_redirect")
 async def login():
+    """
+    Takes the user to the google callback 
+    """
     # Constructing the authorization URL for Google's OAuth2
     authorization_url = f"https://accounts.google.com/o/oauth2/v2/auth?response_type=code&client_id={CLIENT_ID}&redirect_uri={REDIRECT_URI}&scope=email+profile"
-    # return {"url": authorization_url}
-    # Returning the URL to the client
     return RedirectResponse(authorization_url)
 
 
@@ -203,6 +250,20 @@ async def demo_account_login(
     request: schema.DemoAccount,
     db: Session = Depends(get_db),
 ):
+    """
+    Logs in a user with a demo account, or returns an error if the account does not exist.
+
+    Parameters:
+    - response: the outgoing HTTP response
+    - request: a Pydantic model representing the demo account credentials (email and password)
+    - db: the database session dependency
+
+    Returns:
+    - A dictionary containing the access token and refresh token, if the user is successfully authenticated
+
+    Raises:
+    - HTTP 403 Forbidden if the demo account credentials are invalid
+    """
     user = (
         db.query(models.User)
         .filter(models.User.sub == request.password, models.User.email == request.email)
@@ -244,6 +305,19 @@ async def user_history(
     current_user: models.User = Depends(Oauth2.get_current_user),
     db: Session = Depends(get_db),
 ):
+    """
+    Retrieves the history of shared uploads for the authenticated user, for the current day.
+
+    Parameters:
+    - current_user: the authenticated user, obtained from the access token
+    - db: the database session dependency
+
+    Returns:
+    - A list of Pydantic models representing the history entries, including the file name, size, and timestamp
+
+    Raises:
+    - None
+    """
     # Calculate the current date
     today = date.today()
 

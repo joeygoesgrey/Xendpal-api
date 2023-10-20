@@ -17,6 +17,9 @@ premailer = "*"
 gunicorn = "*"
 black = "*"
 pylint = "*"
+email-validator = "*"
+sphinx = "*"
+sphinx-rtd-theme = "*"
 
 [dev-packages]
 

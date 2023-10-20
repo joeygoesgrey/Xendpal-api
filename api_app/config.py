@@ -1,4 +1,3 @@
-from pydantic import EmailStr
 from pydantic_settings import BaseSettings
 
 
@@ -14,7 +13,7 @@ class Settings(BaseSettings):
     ACCESS_TOKEN_EXPIRE_MINUTES: int
     REFRESH_TOKEN_EXPIRE_DAYS: int
     EMAIL_PORT: int
-    EMAIL_HOST_USER: EmailStr  # Replace with your email address
+    EMAIL_HOST_USER: str  # Replace with your email address
     EMAIL_HOST_PASSWORD: str  # Replace with your email password
     USER_INFO_URL: str
     TOKEN_URL: str

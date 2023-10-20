@@ -25,6 +25,8 @@ router = APIRouter(
     prefix="/file",
     tags={"File": "this is the route concerned with file  upload and group assigning"},
 )
+frontend_url = "https://xendpal.vercel.app"
+backend_url = "https://xendpal-api.onrender.com/"
 
 
 @router.post("/upload")
@@ -35,6 +37,23 @@ async def upload_file(
     current_user: models.User = Depends(get_current_user),
     db: Session = Depends(get_db),
 ):
+    """
+    Handles the uploading of files.
+
+    Args:
+        request (Request): The HTTP request object.
+        file_type (str): The type of the file being uploaded.
+        file (UploadFile): The file to be uploaded.
+        current_user (models.User): The current user making the request.
+        db (Session): The database session.
+
+    Raises:
+        HTTPException: If the file is not a ZIP archive or there is not enough space to upload the file.
+        HTTPException: If there is a database error.
+
+    Returns:
+        dict: The details of the uploaded file.
+    """
     upload_folder = Path(f"Uploads/{current_user.email}")
     upload_folder.mkdir(exist_ok=True)
 
@@ -42,7 +61,8 @@ async def upload_file(
 
     # Check if the file is a ZIP by reading its signature
     if file_content[:4] != b"PK\x03\x04":
-        raise HTTPException(status_code=400, detail="File must be a ZIP archive")
+        raise HTTPException(
+            status_code=400, detail="File must be a ZIP archive")
 
     # Get the size of the uploaded file
     file_size_bytes = len(file_content)
@@ -50,7 +70,8 @@ async def upload_file(
     remaining_space_bytes = current_user.max_space - current_user.space
 
     if int(file_size_bytes) > int(remaining_space_bytes):
-        raise HTTPException(status_code=400, detail="Not enough space to upload file")
+        raise HTTPException(
+            status_code=400, detail="Not enough space to upload file")
 
     filename = secure_filename(file.filename)
 
@@ -83,15 +104,24 @@ async def upload_file(
     return new_file
 
 
-# tested
-
-
 @router.get("/user_items")
 async def get_user_content(
     request: Request,
     current_user: models.User = Depends(get_current_user),
     db: Session = Depends(get_db),
 ):
+    """
+    Retrieves the content owned by a user.
+
+    Args:
+        request (Request): The request object from FastAPI.
+        current_user (User): The current user object obtained from the `get_current_user` dependency.
+        db (Session): The database session obtained from the `get_db` dependency.
+
+    Returns:
+        Upload: The details of the newly saved file.
+
+    """
     # Query for owned uploads
     owned_uploads = (
         db.query(models.Upload)
@@ -130,6 +160,22 @@ async def share_upload(
     current_user: models.User = Depends(get_current_user),
     db: Session = Depends(get_db),
 ):
+    """
+    Handles the sharing of file uploads.
+
+    Args:
+        request (Request): The request object containing information about the HTTP request.
+        share_request (schema.ShareUploadSchema): The share request schema containing the details of the upload to be shared.
+        background_tasks (BackgroundTasks, optional): The background tasks object used to run tasks asynchronously. Defaults to BackgroundTasks().
+        current_user (models.User, optional): The current user object obtained from the `get_current_user` dependency. Defaults to Depends(get_current_user).
+        db (Session, optional): The database session object obtained from the `get_db` dependency. Defaults to Depends(get_db).
+
+    Raises:
+        HTTPException: If the upload specified in the share request does not exist or does not belong to the current user.
+
+    Returns:
+        200: A 200 status code indication that all went well
+    """
     # Find the upload by ID
     upload = (
         db.query(models.Upload)
@@ -156,10 +202,10 @@ async def share_upload(
         "reciepient_email": share_request.recipient_email,
         "user_email": current_user.email,
         "description": share_request.description,
-        "file_path": f"http://localhost:8080/{upload.path}",
+        "file_path": f"{backend_url}/{upload.path}",
         "file_name": upload.name,
         "current_year": datetime.now().year,
-        "frontend_url": "xendpal.com.ng",
+        "frontend_url": f"{frontend_url}",
         "subject": "Xendpal File Share",
     }
     email = share_request.recipient_email
@@ -191,8 +237,26 @@ async def delete_upload(
     current_user: models.User = Depends(get_current_user),
     db: Session = Depends(get_db),
 ):
+    """
+    Deletes an uploaded file and its corresponding database record, given the upload ID and the authenticated user's credentials.
+
+    Parameters:
+    - request: the incoming HTTP request
+    - upload_id: the ID of the upload to delete
+    - current_user: the authenticated user, obtained from the access token
+    - db: the database session dependency
+
+    Returns:
+    - HTTP 204 No Content if the upload was successfully deleted
+
+    Raises:
+    - HTTP 404 Not Found if the upload ID does not exist or does not belong to the current user
+    - HTTP 500 Internal Server Error if there was an error deleting the upload or updating the user's space
+    """
+    
     # Find the upload by ID
-    upload = db.query(models.Upload).filter(models.Upload.id == upload_id).first()
+    upload = db.query(models.Upload).filter(
+        models.Upload.id == upload_id).first()
     if not upload or upload.owner_id != current_user.email:
         raise HTTPException(status_code=404, detail="Upload not found")
 

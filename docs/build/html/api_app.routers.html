@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>api_app.routers package &#8212; Xendpal - File Sharing Platform - 0.0.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=4f649999" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=039e1c02" />
+    <script src="_static/jquery.js?v=5d32c60e"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="_static/documentation_options.js?v=d45e8c67"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="api-app-routers-package">
+<h1>api_app.routers package<a class="headerlink" href="#api-app-routers-package" title="Link to this heading"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
+</section>
+<section id="module-api_app.routers.files">
+<span id="api-app-routers-files-module"></span><h2>api_app.routers.files module<a class="headerlink" href="#module-api_app.routers.files" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="api_app.routers.files.delete_upload">
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">api_app.routers.files.</span></span><span class="sig-name descname"><span class="pre">delete_upload</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Request</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">upload_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">current_user</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="api_app.html#api_app.models.User" title="api_app.models.User"><span class="pre">User</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Depends(get_current_user)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Session</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Depends(get_db)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#api_app.routers.files.delete_upload" title="Link to this definition"></a></dt>
+<dd><p>Deletes an uploaded file and its corresponding database record, given the upload ID and the authenticated user’s credentials.</p>
+<p>Parameters:
+- request: the incoming HTTP request
+- upload_id: the ID of the upload to delete
+- current_user: the authenticated user, obtained from the access token
+- db: the database session dependency</p>
+<p>Returns:
+- HTTP 204 No Content if the upload was successfully deleted</p>
+<p>Raises:
+- HTTP 404 Not Found if the upload ID does not exist or does not belong to the current user
+- HTTP 500 Internal Server Error if there was an error deleting the upload or updating the user’s space</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="api_app.routers.files.get_user_content">
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">api_app.routers.files.</span></span><span class="sig-name descname"><span class="pre">get_user_content</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Request</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">current_user</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="api_app.html#api_app.models.User" title="api_app.models.User"><span class="pre">User</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Depends(get_current_user)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Session</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Depends(get_db)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#api_app.routers.files.get_user_content" title="Link to this definition"></a></dt>
+<dd><p>Retrieves the content owned by a user.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>request</strong> (<em>Request</em>) – The request object from FastAPI.</p></li>
+<li><p><strong>current_user</strong> (<a class="reference internal" href="api_app.html#api_app.models.User" title="api_app.models.User"><em>User</em></a>) – The current user object obtained from the <cite>get_current_user</cite> dependency.</p></li>
+<li><p><strong>db</strong> (<em>Session</em>) – The database session obtained from the <cite>get_db</cite> dependency.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The details of the newly saved file.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="api_app.html#api_app.models.Upload" title="api_app.models.Upload">Upload</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="api_app.routers.files.share_upload">
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">api_app.routers.files.</span></span><span class="sig-name descname"><span class="pre">share_upload</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request:</span> <span class="pre">~starlette.requests.Request</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">share_request:</span> <span class="pre">~api_app.schema.ShareUploadSchema</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">background_tasks:</span> <span class="pre">~fastapi.background.BackgroundTasks</span> <span class="pre">=</span> <span class="pre">&lt;fastapi.background.BackgroundTasks</span> <span class="pre">object&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">current_user:</span> <span class="pre">~api_app.models.User</span> <span class="pre">=</span> <span class="pre">Depends(get_current_user)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db:</span> <span class="pre">~sqlalchemy.orm.session.Session</span> <span class="pre">=</span> <span class="pre">Depends(get_db)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#api_app.routers.files.share_upload" title="Link to this definition"></a></dt>
+<dd><p>Handles the sharing of file uploads.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>request</strong> (<em>Request</em>) – The request object containing information about the HTTP request.</p></li>
+<li><p><strong>share_request</strong> (<a class="reference internal" href="api_app.html#api_app.schema.ShareUploadSchema" title="api_app.schema.ShareUploadSchema"><em>schema.ShareUploadSchema</em></a>) – The share request schema containing the details of the upload to be shared.</p></li>
+<li><p><strong>background_tasks</strong> (<em>BackgroundTasks</em><em>, </em><em>optional</em>) – The background tasks object used to run tasks asynchronously. Defaults to BackgroundTasks().</p></li>
+<li><p><strong>current_user</strong> (<a class="reference internal" href="api_app.html#api_app.models.User" title="api_app.models.User"><em>models.User</em></a><em>, </em><em>optional</em>) – The current user object obtained from the <cite>get_current_user</cite> dependency. Defaults to Depends(get_current_user).</p></li>
+<li><p><strong>db</strong> (<em>Session</em><em>, </em><em>optional</em>) – The database session object obtained from the <cite>get_db</cite> dependency. Defaults to Depends(get_db).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>HTTPException</strong> – If the upload specified in the share request does not exist or does not belong to the current user.</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A 200 status code indication that all went well</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>200</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="api_app.routers.files.upload_file">
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">api_app.routers.files.</span></span><span class="sig-name descname"><span class="pre">upload_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Request</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Query(PydanticUndefined)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">UploadFile</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">File(PydanticUndefined)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">current_user</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="api_app.html#api_app.models.User" title="api_app.models.User"><span class="pre">User</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Depends(get_current_user)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Session</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Depends(get_db)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#api_app.routers.files.upload_file" title="Link to this definition"></a></dt>
+<dd><p>Handles the uploading of files.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>request</strong> (<em>Request</em>) – The HTTP request object.</p></li>
+<li><p><strong>file_type</strong> (<em>str</em>) – The type of the file being uploaded.</p></li>
+<li><p><strong>file</strong> (<em>UploadFile</em>) – The file to be uploaded.</p></li>
+<li><p><strong>current_user</strong> (<a class="reference internal" href="api_app.html#api_app.models.User" title="api_app.models.User"><em>models.User</em></a>) – The current user making the request.</p></li>
+<li><p><strong>db</strong> (<em>Session</em>) – The database session.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>HTTPException</strong> – If the file is not a ZIP archive or there is not enough space to upload the file.</p></li>
+<li><p><strong>HTTPException</strong> – If there is a database error.</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The details of the uploaded file.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-api_app.routers.users">
+<span id="api-app-routers-users-module"></span><h2>api_app.routers.users module<a class="headerlink" href="#module-api_app.routers.users" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="api_app.routers.users.demo_account_login">
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">api_app.routers.users.</span></span><span class="sig-name descname"><span class="pre">demo_account_login</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">response</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Response</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">request</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="api_app.html#api_app.schema.DemoAccount" title="api_app.schema.DemoAccount"><span class="pre">DemoAccount</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Session</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Depends(get_db)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#api_app.routers.users.demo_account_login" title="Link to this definition"></a></dt>
+<dd><p>Logs in a user with a demo account, or returns an error if the account does not exist.</p>
+<p>Parameters:
+- response: the outgoing HTTP response
+- request: a Pydantic model representing the demo account credentials (email and password)
+- db: the database session dependency</p>
+<p>Returns:
+- A dictionary containing the access token and refresh token, if the user is successfully authenticated</p>
+<p>Raises:
+- HTTP 403 Forbidden if the demo account credentials are invalid</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="api_app.routers.users.get_current_user">
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">api_app.routers.users.</span></span><span class="sig-name descname"><span class="pre">get_current_user</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#api_app.routers.users.get_current_user" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="api_app.routers.users.get_monthly_usage">
+<span class="sig-prename descclassname"><span class="pre">api_app.routers.users.</span></span><span class="sig-name descname"><span class="pre">get_monthly_usage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Session</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">email</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#api_app.routers.users.get_monthly_usage" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="api_app.routers.users.get_user_information">
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">api_app.routers.users.</span></span><span class="sig-name descname"><span class="pre">get_user_information</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">current_user</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="api_app.html#api_app.models.User" title="api_app.models.User"><span class="pre">User</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Depends(get_current_user)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Session</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Depends(get_db)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#api_app.routers.users.get_user_information" title="Link to this definition"></a></dt>
+<dd><p>Retrieves the user information for the authenticated user.</p>
+<p>Parameters:
+- current_user: the authenticated user, obtained from the access token
+- db: the database session dependency</p>
+<p>Returns:
+- A Pydantic model representing the user information, including the email, name, and profile picture</p>
+<p>Raises:
+- None</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="api_app.routers.users.get_yearly_usage">
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">api_app.routers.users.</span></span><span class="sig-name descname"><span class="pre">get_yearly_usage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">current_user</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="api_app.html#api_app.models.User" title="api_app.models.User"><span class="pre">User</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Depends(get_current_user)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Session</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Depends(get_db)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#api_app.routers.users.get_yearly_usage" title="Link to this definition"></a></dt>
+<dd><p>Retrieves the total size of uploaded files for each month of the current year, for the authenticated user.</p>
+<p>Parameters:
+- current_user: the authenticated user, obtained from the access token
+- db: the database session dependency</p>
+<p>Returns:
+- A dictionary containing two lists: the months (as strings) and the corresponding total usage (in bytes) for each month</p>
+<p>Raises:
+- None</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="api_app.routers.users.login">
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">api_app.routers.users.</span></span><span class="sig-name descname"><span class="pre">login</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#api_app.routers.users.login" title="Link to this definition"></a></dt>
+<dd><p>Takes the user to the google callback</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="api_app.routers.users.login_callback">
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">api_app.routers.users.</span></span><span class="sig-name descname"><span class="pre">login_callback</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="api_app.html#api_app.schema.GoogleLoginRequest" title="api_app.schema.GoogleLoginRequest"><span class="pre">GoogleLoginRequest</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Session</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Depends(get_db)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#api_app.routers.users.login_callback" title="Link to this definition"></a></dt>
+<dd><p>Handles the callback from Google OAuth2 login, and creates or retrieves the user’s account in the database.</p>
+<p>Parameters:
+- request: a Pydantic model representing the incoming HTTP request google callback code returned from the frontend, containing the authorization code
+- db: the database session dependency</p>
+<p>Returns:
+- A dictionary containing the access token and refresh token, if the user is successfully authenticated</p>
+<p>Raises:
+- HTTP 403 Forbidden if the user is not authorized to perform the requested action</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="api_app.routers.users.refresh_token">
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">api_app.routers.users.</span></span><span class="sig-name descname"><span class="pre">refresh_token</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">refresh_token</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="api_app.html#api_app.schema.RefreshTokenSchema" title="api_app.schema.RefreshTokenSchema"><span class="pre">RefreshTokenSchema</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#api_app.routers.users.refresh_token" title="Link to this definition"></a></dt>
+<dd><p>Refreshes an access token using a refresh token, and returns a new access token.</p>
+<p>Parameters:
+- refresh_token: a Pydantic model representing the refresh token</p>
+<p>Returns:
+- A dictionary containing the new access token</p>
+<p>Raises:
+- HTTP 401 Unauthorized if the refresh token is invalid or expired</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="api_app.routers.users.user_history">
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">api_app.routers.users.</span></span><span class="sig-name descname"><span class="pre">user_history</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">current_user</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="api_app.html#api_app.models.User" title="api_app.models.User"><span class="pre">User</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Depends(get_current_user)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Session</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Depends(get_db)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#api_app.routers.users.user_history" title="Link to this definition"></a></dt>
+<dd><p>Retrieves the history of shared uploads for the authenticated user, for the current day.</p>
+<p>Parameters:
+- current_user: the authenticated user, obtained from the access token
+- db: the database session dependency</p>
+<p>Returns:
+- A list of Pydantic models representing the history entries, including the file name, size, and timestamp</p>
+<p>Raises:
+- None</p>
+</dd></dl>
+
+</section>
+<section id="module-api_app.routers">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-api_app.routers" title="Link to this heading"></a></h2>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Xendpal - File Sharing Platform -</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2023, Joseph.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 7.2.6</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.13</a>
+      
+      |
+      <a href="_sources/api_app.routers.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

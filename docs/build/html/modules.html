@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>api_app &#8212; Xendpal - File Sharing Platform - 0.0.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=4f649999" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=039e1c02" />
+    <script src="_static/jquery.js?v=5d32c60e"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="_static/documentation_options.js?v=d45e8c67"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="api-app">
+<h1>api_app<a class="headerlink" href="#api-app" title="Link to this heading"></a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api_app.html">api_app package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api_app.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api_app.routers.html">api_app.routers package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api_app.routers.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_app.routers.html#module-api_app.routers.files">api_app.routers.files module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_app.routers.html#module-api_app.routers.users">api_app.routers.users module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_app.routers.html#module-api_app.routers">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api_app.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api_app.html#module-api_app.Oauth2">api_app.Oauth2 module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api_app.html#api_app.Oauth2.create_access_token"><code class="docutils literal notranslate"><span class="pre">create_access_token()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_app.html#api_app.Oauth2.create_refresh_token"><code class="docutils literal notranslate"><span class="pre">create_refresh_token()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_app.html#api_app.Oauth2.get_current_user"><code class="docutils literal notranslate"><span class="pre">get_current_user()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_app.html#api_app.Oauth2.verify_access_token"><code class="docutils literal notranslate"><span class="pre">verify_access_token()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api_app.html#module-api_app.config">api_app.config module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api_app.html#api_app.config.Settings"><code class="docutils literal notranslate"><span class="pre">Settings</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api_app.html#api_app.config.Settings.ACCESS_TOKEN_EXPIRE_MINUTES"><code class="docutils literal notranslate"><span class="pre">Settings.ACCESS_TOKEN_EXPIRE_MINUTES</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_app.html#api_app.config.Settings.ALGORITHM"><code class="docutils literal notranslate"><span class="pre">Settings.ALGORITHM</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_app.html#api_app.config.Settings.CLIENT_ID"><code class="docutils literal notranslate"><span class="pre">Settings.CLIENT_ID</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_app.html#api_app.config.Settings.CLIENT_SECRET"><code class="docutils literal notranslate"><span class="pre">Settings.CLIENT_SECRET</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_app.html#api_app.config.Settings.Config"><code class="docutils literal notranslate"><span class="pre">Settings.Config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_app.html#api_app.config.Settings.DATABASE_HOST"><code class="docutils literal notranslate"><span class="pre">Settings.DATABASE_HOST</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_app.html#api_app.config.Settings.DATABASE_NAME"><code class="docutils literal notranslate"><span class="pre">Settings.DATABASE_NAME</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_app.html#api_app.config.Settings.DATABASE_PASSWORD"><code class="docutils literal notranslate"><span class="pre">Settings.DATABASE_PASSWORD</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_app.html#api_app.config.Settings.DATABASE_PORT"><code class="docutils literal notranslate"><span class="pre">Settings.DATABASE_PORT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_app.html#api_app.config.Settings.DATABASE_USER"><code class="docutils literal notranslate"><span class="pre">Settings.DATABASE_USER</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_app.html#api_app.config.Settings.EMAIL_HOST_PASSWORD"><code class="docutils literal notranslate"><span class="pre">Settings.EMAIL_HOST_PASSWORD</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_app.html#api_app.config.Settings.EMAIL_HOST_USER"><code class="docutils literal notranslate"><span class="pre">Settings.EMAIL_HOST_USER</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_app.html#api_app.config.Settings.EMAIL_PORT"><code class="docutils literal notranslate"><span class="pre">Settings.EMAIL_PORT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_app.html#api_app.config.Settings.REDIRECT_URI"><code class="docutils literal notranslate"><span class="pre">Settings.REDIRECT_URI</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_app.html#api_app.config.Settings.REFRESH_TOKEN_EXPIRE_DAYS"><code class="docutils literal notranslate"><span class="pre">Settings.REFRESH_TOKEN_EXPIRE_DAYS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_app.html#api_app.config.Settings.SECRET_KEY"><code class="docutils literal notranslate"><span class="pre">Settings.SECRET_KEY</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_app.html#api_app.config.Settings.TOKEN_URL"><code class="docutils literal notranslate"><span class="pre">Settings.TOKEN_URL</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_app.html#api_app.config.Settings.USER_INFO_URL"><code class="docutils literal notranslate"><span class="pre">Settings.USER_INFO_URL</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_app.html#api_app.config.Settings.model_config"><code class="docutils literal notranslate"><span class="pre">Settings.model_config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_app.html#api_app.config.Settings.model_fields"><code class="docutils literal notranslate"><span class="pre">Settings.model_fields</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api_app.html#module-api_app.database">api_app.database module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api_app.html#module-api_app.extras">api_app.extras module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api_app.html#api_app.extras.send_share_email"><code class="docutils literal notranslate"><span class="pre">send_share_email()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api_app.html#api-app-main-module">api_app.main module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api_app.html#module-api_app.models">api_app.models module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api_app.html#api_app.models.History"><code class="docutils literal notranslate"><span class="pre">History</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api_app.html#api_app.models.History.created_at"><code class="docutils literal notranslate"><span class="pre">History.created_at</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_app.html#api_app.models.History.id"><code class="docutils literal notranslate"><span class="pre">History.id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_app.html#api_app.models.History.message"><code class="docutils literal notranslate"><span class="pre">History.message</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_app.html#api_app.models.History.user"><code class="docutils literal notranslate"><span class="pre">History.user</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_app.html#api_app.models.History.user_email"><code class="docutils literal notranslate"><span class="pre">History.user_email</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api_app.html#api_app.models.SharedRecipient"><code class="docutils literal notranslate"><span class="pre">SharedRecipient</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api_app.html#api_app.models.SharedRecipient.id"><code class="docutils literal notranslate"><span class="pre">SharedRecipient.id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_app.html#api_app.models.SharedRecipient.recipient_email"><code class="docutils literal notranslate"><span class="pre">SharedRecipient.recipient_email</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_app.html#api_app.models.SharedRecipient.shared_upload"><code class="docutils literal notranslate"><span class="pre">SharedRecipient.shared_upload</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_app.html#api_app.models.SharedRecipient.shared_upload_id"><code class="docutils literal notranslate"><span class="pre">SharedRecipient.shared_upload_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_app.html#api_app.models.SharedRecipient.upload"><code class="docutils literal notranslate"><span class="pre">SharedRecipient.upload</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_app.html#api_app.models.SharedRecipient.upload_id"><code class="docutils literal notranslate"><span class="pre">SharedRecipient.upload_id</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api_app.html#api_app.models.SharedUpload"><code class="docutils literal notranslate"><span class="pre">SharedUpload</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api_app.html#api_app.models.SharedUpload.description"><code class="docutils literal notranslate"><span class="pre">SharedUpload.description</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_app.html#api_app.models.SharedUpload.id"><code class="docutils literal notranslate"><span class="pre">SharedUpload.id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_app.html#api_app.models.SharedUpload.permission"><code class="docutils literal notranslate"><span class="pre">SharedUpload.permission</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_app.html#api_app.models.SharedUpload.recipients"><code class="docutils literal notranslate"><span class="pre">SharedUpload.recipients</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_app.html#api_app.models.SharedUpload.time_shared"><code class="docutils literal notranslate"><span class="pre">SharedUpload.time_shared</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_app.html#api_app.models.SharedUpload.upload"><code class="docutils literal notranslate"><span class="pre">SharedUpload.upload</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_app.html#api_app.models.SharedUpload.upload_id"><code class="docutils literal notranslate"><span class="pre">SharedUpload.upload_id</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api_app.html#api_app.models.Upload"><code class="docutils literal notranslate"><span class="pre">Upload</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api_app.html#api_app.models.Upload.created_at"><code class="docutils literal notranslate"><span class="pre">Upload.created_at</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_app.html#api_app.models.Upload.id"><code class="docutils literal notranslate"><span class="pre">Upload.id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_app.html#api_app.models.Upload.name"><code class="docutils literal notranslate"><span class="pre">Upload.name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_app.html#api_app.models.Upload.owner"><code class="docutils literal notranslate"><span class="pre">Upload.owner</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_app.html#api_app.models.Upload.owner_id"><code class="docutils literal notranslate"><span class="pre">Upload.owner_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_app.html#api_app.models.Upload.path"><code class="docutils literal notranslate"><span class="pre">Upload.path</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_app.html#api_app.models.Upload.shared_recipients"><code class="docutils literal notranslate"><span class="pre">Upload.shared_recipients</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_app.html#api_app.models.Upload.size"><code class="docutils literal notranslate"><span class="pre">Upload.size</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_app.html#api_app.models.Upload.type"><code class="docutils literal notranslate"><span class="pre">Upload.type</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api_app.html#api_app.models.User"><code class="docutils literal notranslate"><span class="pre">User</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api_app.html#api_app.models.User.created_at"><code class="docutils literal notranslate"><span class="pre">User.created_at</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_app.html#api_app.models.User.email"><code class="docutils literal notranslate"><span class="pre">User.email</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_app.html#api_app.models.User.history_entries"><code class="docutils literal notranslate"><span class="pre">User.history_entries</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_app.html#api_app.models.User.max_space"><code class="docutils literal notranslate"><span class="pre">User.max_space</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_app.html#api_app.models.User.name"><code class="docutils literal notranslate"><span class="pre">User.name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_app.html#api_app.models.User.password"><code class="docutils literal notranslate"><span class="pre">User.password</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_app.html#api_app.models.User.picture"><code class="docutils literal notranslate"><span class="pre">User.picture</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_app.html#api_app.models.User.space"><code class="docutils literal notranslate"><span class="pre">User.space</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_app.html#api_app.models.User.sub"><code class="docutils literal notranslate"><span class="pre">User.sub</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_app.html#api_app.models.User.uploads"><code class="docutils literal notranslate"><span class="pre">User.uploads</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api_app.html#api_app.models.generate_uuid"><code class="docutils literal notranslate"><span class="pre">generate_uuid()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_app.html#api_app.models.get_db"><code class="docutils literal notranslate"><span class="pre">get_db()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api_app.html#module-api_app.schema">api_app.schema module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api_app.html#api_app.schema.DemoAccount"><code class="docutils literal notranslate"><span class="pre">DemoAccount</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api_app.html#api_app.schema.DemoAccount.email"><code class="docutils literal notranslate"><span class="pre">DemoAccount.email</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_app.html#api_app.schema.DemoAccount.model_config"><code class="docutils literal notranslate"><span class="pre">DemoAccount.model_config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_app.html#api_app.schema.DemoAccount.model_fields"><code class="docutils literal notranslate"><span class="pre">DemoAccount.model_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_app.html#api_app.schema.DemoAccount.password"><code class="docutils literal notranslate"><span class="pre">DemoAccount.password</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api_app.html#api_app.schema.GoogleLoginRequest"><code class="docutils literal notranslate"><span class="pre">GoogleLoginRequest</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api_app.html#api_app.schema.GoogleLoginRequest.code"><code class="docutils literal notranslate"><span class="pre">GoogleLoginRequest.code</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_app.html#api_app.schema.GoogleLoginRequest.model_config"><code class="docutils literal notranslate"><span class="pre">GoogleLoginRequest.model_config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_app.html#api_app.schema.GoogleLoginRequest.model_fields"><code class="docutils literal notranslate"><span class="pre">GoogleLoginRequest.model_fields</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api_app.html#api_app.schema.HistorySchema"><code class="docutils literal notranslate"><span class="pre">HistorySchema</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api_app.html#api_app.schema.HistorySchema.Config"><code class="docutils literal notranslate"><span class="pre">HistorySchema.Config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_app.html#api_app.schema.HistorySchema.created_at"><code class="docutils literal notranslate"><span class="pre">HistorySchema.created_at</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_app.html#api_app.schema.HistorySchema.id"><code class="docutils literal notranslate"><span class="pre">HistorySchema.id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_app.html#api_app.schema.HistorySchema.message"><code class="docutils literal notranslate"><span class="pre">HistorySchema.message</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_app.html#api_app.schema.HistorySchema.model_config"><code class="docutils literal notranslate"><span class="pre">HistorySchema.model_config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_app.html#api_app.schema.HistorySchema.model_fields"><code class="docutils literal notranslate"><span class="pre">HistorySchema.model_fields</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api_app.html#api_app.schema.RefreshTokenSchema"><code class="docutils literal notranslate"><span class="pre">RefreshTokenSchema</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api_app.html#api_app.schema.RefreshTokenSchema.model_config"><code class="docutils literal notranslate"><span class="pre">RefreshTokenSchema.model_config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_app.html#api_app.schema.RefreshTokenSchema.model_fields"><code class="docutils literal notranslate"><span class="pre">RefreshTokenSchema.model_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_app.html#api_app.schema.RefreshTokenSchema.refresh_token"><code class="docutils literal notranslate"><span class="pre">RefreshTokenSchema.refresh_token</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api_app.html#api_app.schema.ShareUploadSchema"><code class="docutils literal notranslate"><span class="pre">ShareUploadSchema</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api_app.html#api_app.schema.ShareUploadSchema.description"><code class="docutils literal notranslate"><span class="pre">ShareUploadSchema.description</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_app.html#api_app.schema.ShareUploadSchema.model_config"><code class="docutils literal notranslate"><span class="pre">ShareUploadSchema.model_config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_app.html#api_app.schema.ShareUploadSchema.model_fields"><code class="docutils literal notranslate"><span class="pre">ShareUploadSchema.model_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_app.html#api_app.schema.ShareUploadSchema.permission"><code class="docutils literal notranslate"><span class="pre">ShareUploadSchema.permission</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_app.html#api_app.schema.ShareUploadSchema.recipient_email"><code class="docutils literal notranslate"><span class="pre">ShareUploadSchema.recipient_email</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_app.html#api_app.schema.ShareUploadSchema.upload_id"><code class="docutils literal notranslate"><span class="pre">ShareUploadSchema.upload_id</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api_app.html#api_app.schema.Token"><code class="docutils literal notranslate"><span class="pre">Token</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api_app.html#api_app.schema.Token.access_token"><code class="docutils literal notranslate"><span class="pre">Token.access_token</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_app.html#api_app.schema.Token.model_config"><code class="docutils literal notranslate"><span class="pre">Token.model_config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_app.html#api_app.schema.Token.model_fields"><code class="docutils literal notranslate"><span class="pre">Token.model_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_app.html#api_app.schema.Token.token_type"><code class="docutils literal notranslate"><span class="pre">Token.token_type</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api_app.html#api_app.schema.TokenData"><code class="docutils literal notranslate"><span class="pre">TokenData</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api_app.html#api_app.schema.TokenData.email"><code class="docutils literal notranslate"><span class="pre">TokenData.email</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_app.html#api_app.schema.TokenData.model_config"><code class="docutils literal notranslate"><span class="pre">TokenData.model_config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_app.html#api_app.schema.TokenData.model_fields"><code class="docutils literal notranslate"><span class="pre">TokenData.model_fields</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api_app.html#api_app.schema.Upload"><code class="docutils literal notranslate"><span class="pre">Upload</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api_app.html#api_app.schema.Upload.file_type"><code class="docutils literal notranslate"><span class="pre">Upload.file_type</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_app.html#api_app.schema.Upload.model_config"><code class="docutils literal notranslate"><span class="pre">Upload.model_config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_app.html#api_app.schema.Upload.model_fields"><code class="docutils literal notranslate"><span class="pre">Upload.model_fields</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api_app.html#api_app.schema.UploadModelSchema"><code class="docutils literal notranslate"><span class="pre">UploadModelSchema</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api_app.html#api_app.schema.UploadModelSchema.Config"><code class="docutils literal notranslate"><span class="pre">UploadModelSchema.Config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_app.html#api_app.schema.UploadModelSchema.created_at"><code class="docutils literal notranslate"><span class="pre">UploadModelSchema.created_at</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_app.html#api_app.schema.UploadModelSchema.id"><code class="docutils literal notranslate"><span class="pre">UploadModelSchema.id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_app.html#api_app.schema.UploadModelSchema.model_config"><code class="docutils literal notranslate"><span class="pre">UploadModelSchema.model_config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_app.html#api_app.schema.UploadModelSchema.model_fields"><code class="docutils literal notranslate"><span class="pre">UploadModelSchema.model_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_app.html#api_app.schema.UploadModelSchema.name"><code class="docutils literal notranslate"><span class="pre">UploadModelSchema.name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_app.html#api_app.schema.UploadModelSchema.owner_id"><code class="docutils literal notranslate"><span class="pre">UploadModelSchema.owner_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_app.html#api_app.schema.UploadModelSchema.path"><code class="docutils literal notranslate"><span class="pre">UploadModelSchema.path</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_app.html#api_app.schema.UploadModelSchema.size"><code class="docutils literal notranslate"><span class="pre">UploadModelSchema.size</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_app.html#api_app.schema.UploadModelSchema.type"><code class="docutils literal notranslate"><span class="pre">UploadModelSchema.type</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api_app.html#api_app.schema.UserBase"><code class="docutils literal notranslate"><span class="pre">UserBase</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api_app.html#api_app.schema.UserBase.Config"><code class="docutils literal notranslate"><span class="pre">UserBase.Config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_app.html#api_app.schema.UserBase.max_space"><code class="docutils literal notranslate"><span class="pre">UserBase.max_space</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_app.html#api_app.schema.UserBase.model_config"><code class="docutils literal notranslate"><span class="pre">UserBase.model_config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_app.html#api_app.schema.UserBase.model_fields"><code class="docutils literal notranslate"><span class="pre">UserBase.model_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_app.html#api_app.schema.UserBase.name"><code class="docutils literal notranslate"><span class="pre">UserBase.name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_app.html#api_app.schema.UserBase.picture"><code class="docutils literal notranslate"><span class="pre">UserBase.picture</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_app.html#api_app.schema.UserBase.space"><code class="docutils literal notranslate"><span class="pre">UserBase.space</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api_app.html#module-api_app">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Xendpal - File Sharing Platform -</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2023, Joseph.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 7.2.6</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.13</a>
+      
+      |
+      <a href="_sources/modules.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
